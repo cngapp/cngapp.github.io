@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-etPb9sWJrIbtOKbuqwJZI7StgROWSu9xIOgGEVaF2GM=' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://ntfy.sh https://gmail.googleapis.com https://www.googleapis.com https://oauth2.googleapis.com https://api.anthropic.com https://cdn.jsdelivr.net https://tessdata.projectnaptha.com; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#090B0A" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="CNG Vinted" />
+    <meta name="description" content="Comptabilité, stock et rentabilité pour l'achat-revente sur Vinted." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icon-180.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <title>CNG Vinted</title>
+    <script type="module" crossorigin src="/vinted-profit-ai/assets/index-C316hyHV.js"></script>
+    <link rel="stylesheet" crossorigin href="/vinted-profit-ai/assets/index-0Tl0NhjO.css">
+  </head>
+  <body>
+    <!-- Écran de chargement : affiché immédiatement, avant le JavaScript, puis retiré par l'application -->
+    <div id="splash" role="status" aria-label="Chargement de CNG Vinted">
+      <svg viewBox="40 130 432 270" width="180" height="113" aria-hidden="true">
+        <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path class="sp-l" d="M176.3 179.5 A65.0 65.0 0 1 0 176.3 266.5" stroke="#F5F5F5" stroke-width="36"/>
+          <path class="sp-l" d="M212 288 V158 L296 288 V158" stroke="#F5F5F5" stroke-width="36"/>
+          <path class="sp-l" d="M430.3 179.5 A65.0 65.0 0 1 0 447.0 223.0 H386" stroke="#F5F5F5" stroke-width="36"/>
+          <path class="sp-line" pathLength="1" d="M63 372 H290 L330 350 L356 364 L432 314" stroke="#63F77B" stroke-width="22"/>
+          <path class="sp-head" d="M398 314 H432 V348" stroke="#63F77B" stroke-width="22"/>
+        </g>
+      </svg>
+      <div class="sp-name">CNG Vinted</div>
+      <div class="sp-skip">Touche l'écran pour passer</div>
+    </div>
+    <script>
+      // toucher l'écran de chargement le fait disparaître tout de suite
+      document.getElementById('splash').addEventListener('click', function () {
+        window.__splashSkipped = true;
+        this.classList.add('sp-hide');
+        var el = this;
+        setTimeout(function () { el.remove(); }, 850);
+      });
+    </script>
+    <style>
+      html { background: var(--bg, #090B0A); } body { margin: 0; }
+      #splash { position: fixed; inset: 0; z-index: 100; background: #090B0A; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; transition: opacity .8s ease, visibility .8s; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+      #splash.sp-hide { opacity: 0; visibility: hidden; }
+      #splash .sp-name { color: #A1A1AA; font: 600 15px/1 'Manrope', system-ui, -apple-system, sans-serif; letter-spacing: .02em; opacity: 0; animation: sp-fade 1.5s 5s ease forwards; }
+      #splash .sp-l { opacity: 0; animation: sp-fade 2s ease forwards; }
+      #splash .sp-l:nth-child(2) { animation-delay: .9s; }
+      #splash .sp-l:nth-child(3) { animation-delay: 1.8s; }
+      #splash .sp-line { stroke-dasharray: 1; stroke-dashoffset: 1; animation: sp-draw 4s 3.5s cubic-bezier(.45,0,.25,1) forwards; }
+      #splash .sp-head { opacity: 0; animation: sp-fade .6s 7.4s ease forwards; }
+      #splash .sp-skip { position: absolute; bottom: calc(env(safe-area-inset-bottom, 0px) + 28px); color: #6B6F6B; font: 500 13px/1 'Manrope', system-ui, -apple-system, sans-serif; opacity: 0; animation: sp-fade 1s 2.5s ease forwards; }
+      @keyframes sp-draw { to { stroke-dashoffset: 0; } }
+      @keyframes sp-fade { to { opacity: 1; } }
+      @media (prefers-reduced-motion: reduce) {
+        #splash *, #splash .sp-line { animation: none !important; opacity: 1 !important; stroke-dashoffset: 0 !important; }
+      }
+    </style>
+    <div id="root"></div>
+  </body>
+</html>
