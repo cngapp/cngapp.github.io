@@ -1,75 +1,166 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-etPb9sWJrIbtOKbuqwJZI7StgROWSu9xIOgGEVaF2GM=' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; media-src 'self' data: blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://ntfy.sh https://gmail.googleapis.com https://www.googleapis.com https://oauth2.googleapis.com https://api.anthropic.com https://cdn.jsdelivr.net https://tessdata.projectnaptha.com; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#090B0A" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="CNG Bêta" />
-    <meta name="description" content="Calcule ton vrai bénéfice sur chaque vente Vinted : ventes enregistrées depuis Gmail, stock, bordereaux en un PDF, bilan. Gratuit, iPhone et Android." />
-    <meta name="robots" content="noindex, nofollow" />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="fr_FR" />
-    <meta property="og:site_name" content="CNG Vinted" />
-    <meta property="og:title" content="CNG Vinted — Appli gratuite de compta Vinted" />
-    <meta property="og:description" content="Ton vrai bénéfice sur chaque vente, sans tableur. Gratuit, sans abonnement." />
-    <meta property="og:url" content="https://cngapp.github.io/" />
-    <meta property="og:image" content="https://cngapp.github.io/og-image.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://cngapp.github.io/#org","name":"CNG Vinted","url":"https://cngapp.github.io/","logo":"https://cngapp.github.io/icon-512.png","sameAs":["https://www.instagram.com/cngvinted/"]},{"@type":"SoftwareApplication","name":"CNG Vinted","url":"https://cngapp.github.io/","applicationCategory":"FinanceApplication","operatingSystem":"iOS, Android, Web","inLanguage":"fr","description":"Application gratuite pour suivre ses ventes Vinted et calculer son vrai bénéfice : stock, dépenses, bordereaux, bilan et exports.","image":"https://cngapp.github.io/icon-512.png","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@id":"https://cngapp.github.io/#org"}}]}</script>
-    <link rel="manifest" href="./manifest.webmanifest" />
-    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="./icon-180.png" />
-    <title>CNG Vinted Bêta</title>
-    <script type="module" crossorigin src="/beta/assets/index-1-ydks83.js"></script>
-    <link rel="stylesheet" crossorigin href="/beta/assets/index-D5DQOwBT.css">
-  </head>
-  <body>
-    <!-- Écran de chargement : affiché immédiatement, avant le JavaScript, puis retiré par l'application -->
-    <div id="splash" role="status" aria-label="Chargement de CNG Vinted">
-      <svg viewBox="40 130 432 270" width="180" height="113" aria-hidden="true">
-        <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path class="sp-l" d="M176.3 179.5 A65.0 65.0 0 1 0 176.3 266.5" stroke="#F5F5F5" stroke-width="36"/>
-          <path class="sp-l" d="M212 288 V158 L296 288 V158" stroke="#F5F5F5" stroke-width="36"/>
-          <path class="sp-l" d="M430.3 179.5 A65.0 65.0 0 1 0 447.0 223.0 H386" stroke="#F5F5F5" stroke-width="36"/>
-          <path class="sp-line" pathLength="1" d="M63 372 H290 L330 350 L356 364 L432 314" stroke="#63F77B" stroke-width="22"/>
-          <path class="sp-head" d="M398 314 H432 V348" stroke="#63F77B" stroke-width="22"/>
-        </g>
-      </svg>
-      <h1 class="sp-name">CNG Vinted · compta Vinted gratuite</h1>
-      <div class="sp-skip">Touche l'écran pour passer</div>
-    </div>
-    <script>
-      // toucher l'écran de chargement le fait disparaître tout de suite
-      document.getElementById('splash').addEventListener('click', function () {
-        window.__splashSkipped = true;
-        this.classList.add('sp-hide');
-        var el = this;
-        setTimeout(function () { el.remove(); }, 850);
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>CNG Vinted déménage</title>
+<style>
+  :root { color-scheme: dark; }
+  html, body { margin: 0; background: #090b0a; color: #f5f5f4; font: 16px/1.5 -apple-system, system-ui, sans-serif; }
+  main { max-width: 460px; margin: 0 auto; padding: 48px 20px; text-align: center; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  p { color: #a8a29e; margin: 0 0 16px; }
+  a.btn, button { display: block; width: 100%; box-sizing: border-box; padding: 14px; border-radius: 14px; border: 0; font: inherit; font-weight: 700; margin-top: 10px; text-decoration: none; }
+  .primary { background: #5ef07c; color: #062b10; }
+  .ghost { background: #1c1f1d; color: #f5f5f4; }
+  .spin { width: 28px; height: 28px; margin: 0 auto 18px; border: 3px solid #1f3a26; border-top-color: #5ef07c; border-radius: 50%; animation: s 0.8s linear infinite; }
+  @keyframes s { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<main>
+  <div class="spin" id="spin"></div>
+  <h1>CNG Vinted déménage</h1>
+  <p id="msg">Nouvelle adresse : <b>cngapp.com</b>. Tes données sont transférées automatiquement…</p>
+  <div id="actions"></div>
+</main>
+<script>
+/*
+ * Ancienne adresse de l'appli (cngapp.github.io) : transfère les données de cet appareil vers
+ * https://cngapp.com, puis y redirige. Les données restent aussi ici (rien n'est effacé).
+ * Les données qui arrivent encore de la toute première adresse (#transfert=…) sont transmises telles quelles.
+ */
+(function () {
+  var beta = location.pathname.indexOf('/beta/') >= 0;
+  var DB = beta ? 'cng-vinted-beta' : 'vinted-profit-ai';
+  var TARGET = 'https://cngapp.com/' + (beta ? 'beta/' : '');
+  // essais en local uniquement : autre adresse de destination
+  var cible = new URLSearchParams(location.search).get('cible');
+  if (location.hostname === 'localhost' && cible) TARGET = cible;
+  var MAX = 1800000; // taille maximale transmise dans l'adresse
+  var msg = document.getElementById('msg');
+  var actions = document.getElementById('actions');
+
+  // l'ancienne version de l'appli (mise en cache) ne doit plus s'ouvrir ici
+  try { navigator.serviceWorker && navigator.serviceWorker.getRegistrations().then(function (rs) { rs.forEach(function (r) { r.unregister(); }); }); } catch (e) {}
+  try { window.caches && caches.keys().then(function (ks) { ks.forEach(function (k) { caches.delete(k); }); }); } catch (e) {}
+
+  function go(extra) { location.replace(TARGET + (extra || '')); }
+  var DONE = 'cng-transfert-com-fait';
+  var incoming = /^#transfert=/.test(location.hash) ? location.hash : '';
+  var again = /[?&]transfert/.test(location.search);
+  var done = false;
+  try { done = localStorage.getItem(DONE) === '1'; } catch (e) {}
+  if (done && !again) return go(incoming);
+  // appli installée sur iPhone : la nouvelle adresse s'ouvrirait dans une fenêtre à part, qui ne garde
+  // pas ses données. On explique comment installer la nouvelle adresse depuis Safari.
+  var iosApp = window.navigator.standalone === true;
+
+  function readAll() {
+    return new Promise(function (resolve) {
+      var created = false;
+      var req;
+      try { req = indexedDB.open(DB); } catch (e) { return resolve(null); }
+      req.onupgradeneeded = function () { created = true; };
+      req.onerror = function () { resolve(null); };
+      req.onsuccess = function () {
+        var db = req.result;
+        if (created || !db.objectStoreNames.length) { db.close(); if (created) indexedDB.deleteDatabase(DB); return resolve(null); }
+        var names = Array.prototype.slice.call(db.objectStoreNames);
+        var tx = db.transaction(names, 'readonly');
+        var out = {};
+        names.forEach(function (n) { var g = tx.objectStore(n).getAll(); g.onsuccess = function () { out[n] = g.result; }; });
+        tx.oncomplete = function () { db.close(); resolve(out); };
+        tx.onerror = function () { db.close(); resolve(null); };
+      };
+    });
+  }
+
+  function blobToDataURL(b) {
+    return new Promise(function (res) { var r = new FileReader(); r.onload = function () { res(r.result); }; r.onerror = function () { res(null); }; r.readAsDataURL(b); });
+  }
+
+  function b64url(bytes) {
+    var bin = '';
+    for (var i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  function pack(obj) {
+    var text = JSON.stringify(obj);
+    var bytes = new TextEncoder().encode(text);
+    if (!window.CompressionStream) return Promise.resolve('j' + b64url(bytes));
+    var cs = new Blob([bytes]).stream().pipeThrough(new CompressionStream('gzip'));
+    return new Response(cs).arrayBuffer().then(function (buf) { return 'g' + b64url(new Uint8Array(buf)); });
+  }
+
+  function saveFile(obj) {
+    var data = {};
+    Object.keys(obj.tables).forEach(function (k) { data[k] = obj.tables[k]; });
+    var blob = new Blob([JSON.stringify({ format: 'vinted-profit-ai/backup', version: 2, createdAt: new Date().toISOString(), data: data })], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'cng-vinted_sauvegarde.json';
+    a.className = 'btn ghost';
+    a.textContent = 'Télécharger ma sauvegarde';
+    return a;
+  }
+
+  function iosHelp(tables) {
+    document.getElementById('spin').style.display = 'none';
+    msg.innerHTML = 'L’appli a une nouvelle adresse : <b>cngapp.com</b>.<br><br>1. Ouvre <b>Safari</b> et va sur <b>cngapp.com</b>' + (beta ? '/beta' : '') + '.<br>2. Touche <b>Partager</b> puis <b>Sur l’écran d’accueil</b>.<br>3. Dans la nouvelle appli, touche <b>« J’ai déjà l’appli : récupérer mes données »</b> (sauvegarde Google). Sans sauvegarde Google : télécharge le fichier ci-dessous, puis dans la nouvelle appli, Exports → Restaurer une sauvegarde.<br><br>Tu pourras ensuite supprimer cette ancienne icône.';
+    var atts = tables.attachments || [];
+    var copy = Object.assign({}, tables, { attachments: [] });
+    actions.appendChild(saveFile({ tables: copy }));
+    var l = document.createElement('a'); l.href = TARGET; l.className = 'btn primary'; l.textContent = 'Voir cngapp.com'; actions.appendChild(l);
+    return atts;
+  }
+
+  readAll().then(function (tables) {
+    var hasData = tables && tables.settings && tables.settings.some(function (s) { return s && s.onboarded; });
+    if (!hasData) return go(incoming);
+    if (iosApp) return iosHelp(tables);
+    var atts = tables.attachments || [];
+    delete tables.attachments;
+    var ls = {};
+    try { for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (k !== DONE && k !== 'cng-transfert-fait') ls[k] = localStorage.getItem(k); } } catch (e) {}
+    var payload = { v: 1, from: location.origin + location.pathname, tables: tables, ls: ls, photos: 0, photosTotal: atts.length };
+    return pack(payload).then(function (base) {
+      // photos et justificatifs ajoutés tant que la taille le permet
+      var budget = MAX - base.length;
+      var chosen = [];
+      return atts.reduce(function (p, a) {
+        return p.then(function () {
+          if (budget <= 0 || !(a.blob instanceof Blob) || a.blob.size * 1.5 > budget) return;
+          return blobToDataURL(a.blob).then(function (d) {
+            if (!d || d.length > budget * 1.3) return;
+            chosen.push({ id: a.id, mime: a.mime, createdAt: a.createdAt, data: d });
+            budget -= d.length * 0.8;
+          });
+        });
+      }, Promise.resolve()).then(function () {
+        payload.tables.attachments = chosen;
+        payload.photos = chosen.length;
+        return pack(payload).then(function (s) {
+          if (s.length > MAX) { payload.tables.attachments = []; payload.photos = 0; return pack(payload); }
+          return s;
+        });
+      }).then(function (s) {
+        if (s.length > MAX) {
+          // trop de données pour un transfert automatique : sauvegarde à importer à la main
+          document.getElementById('spin').style.display = 'none';
+          msg.innerHTML = 'Tes données sont trop volumineuses pour un transfert automatique. Télécharge ta sauvegarde, puis ouvre la nouvelle adresse et importe-la (Exports → Restaurer une sauvegarde).';
+          actions.appendChild(saveFile({ tables: Object.assign({}, tables, { attachments: [] }) }));
+          var l = document.createElement('a'); l.href = TARGET; l.className = 'btn primary'; l.textContent = 'Ouvrir la nouvelle adresse'; actions.appendChild(l);
+          return;
+        }
+        try { localStorage.setItem(DONE, '1'); } catch (e) {}
+        go('#transfert=' + s);
       });
-    </script>
-    <style>
-      html { background: var(--bg, #090B0A); } body { margin: 0; }
-      #splash { position: fixed; inset: 0; z-index: 100; background: #090B0A; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; transition: opacity .8s ease, visibility .8s; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-      #splash.sp-hide { opacity: 0; visibility: hidden; }
-      #splash .sp-name { margin: 0; color: #A1A1AA; font: 600 15px/1 'Manrope Variable', 'Manrope', system-ui, -apple-system, sans-serif; letter-spacing: .02em; opacity: 0; animation: sp-fade 1.5s 5s ease forwards; }
-      #splash .sp-l { opacity: 0; animation: sp-fade 2s ease forwards; }
-      #splash .sp-l:nth-child(2) { animation-delay: .9s; }
-      #splash .sp-l:nth-child(3) { animation-delay: 1.8s; }
-      #splash .sp-line { stroke-dasharray: 1; stroke-dashoffset: 1; animation: sp-draw 4s 3.5s cubic-bezier(.45,0,.25,1) forwards; }
-      #splash .sp-head { opacity: 0; animation: sp-fade .6s 7.4s ease forwards; }
-      #splash .sp-skip { position: absolute; bottom: calc(env(safe-area-inset-bottom, 0px) + 28px); color: #6B6F6B; font: 500 13px/1 'Manrope Variable', 'Manrope', system-ui, -apple-system, sans-serif; opacity: 0; animation: sp-fade 1s 2.5s ease forwards; }
-      @keyframes sp-draw { to { stroke-dashoffset: 0; } }
-      @keyframes sp-fade { to { opacity: 1; } }
-      @media (prefers-reduced-motion: reduce) {
-        #splash *, #splash .sp-line { animation: none !important; opacity: 1 !important; stroke-dashoffset: 0 !important; }
-      }
-    </style>
-    <div id="root"></div>
-  </body>
+    });
+  }).catch(function () { go(); });
+})();
+</script>
+</body>
 </html>
